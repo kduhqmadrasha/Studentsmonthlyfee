@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a3d2e">
+<title>Kulliyathu · Fee Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Mobile-first Islamic Green + Warm Gold
+   ============================================================ */
+:root {
+  --g900: #052618;
+  --g800: #0a3d2e;
+  --g700: #0d5c40;
+  --g600: #117a55;
+  --g500: #16a06e;
+  --g400: #4dc894;
+  --g100: #e8f8f1;
+  --g50:  #f2fbf6;
+  --gold: #c8922a;
+  --gold2: #e8b84b;
+  --gold3: #fdf0d4;
+  --red:  #c0392b;
+  --red2: #fde8e8;
+  --blue: #2471a3;
+  --blue2: #eaf3fb;
+  --ink:  #1a1c1a;
+  --ink2: #404640;
+  --ink3: #8a9088;
+  --bg:   #f4f7f4;
+  --card: #ffffff;
+  --border: rgba(17,122,85,0.15);
+  --shadow-sm: 0 2px 8px rgba(5,38,24,0.08);
+  --shadow-md: 0 4px 20px rgba(5,38,24,0.12);
+  --shadow-lg: 0 8px 40px rgba(5,38,24,0.18);
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --safe-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%;}
+button{cursor:pointer;font-family:'Outfit',sans-serif;}
+input,select,textarea{font-family:'Outfit',sans-serif;}
+a{color:inherit;text-decoration:none;}
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+#loginScreen{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,var(--g900) 0%,var(--g800) 40%,var(--g700) 100%);
+  z-index:9999;padding:20px;
+}
+#loginScreen::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 80%,rgba(200,146,42,0.12) 0%,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(77,200,148,0.08) 0%,transparent 50%);
+  pointer-events:none;
+}
+.login-box{
+  width:100%;max-width:400px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--r-xl);
+  padding:36px 28px 32px;
+  box-shadow:0 32px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08);
+  animation:loginIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes loginIn{from{opacity:0;transform:translateY(40px) scale(0.95);}to{opacity:1;transform:none;}}
+.login-logo{text-align:center;margin-bottom:28px;}
+.login-arabic{
+  font-family:'Noto Naskh Arabic',serif;
+  font-size:1.5rem;font-weight:700;
+  color:var(--gold2);
+  direction:rtl;line-height:1.6;
+  text-shadow:0 2px 16px rgba(200,146,42,0.3);
+}
+.login-eng{
+  font-size:0.78rem;color:rgba(255,255,255,0.5);
+  font-weight:500;letter-spacing:1.2px;text-transform:uppercase;
+  margin-top:8px;
+}
+.login-divider{
+  display:flex;align-items:center;gap:10px;margin:4px 0 24px;
+}
+.login-divider span{flex:1;height:1px;background:rgba(200,146,42,0.3);}
+.login-divider em{color:var(--gold2);font-style:normal;font-size:1.1rem;}
+.lbl{
+  font-size:0.72rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:rgba(255,255,255,0.5);
+  display:block;margin-bottom:6px;
+}
+.linput{
+  width:100%;padding:14px 16px;
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(255,255,255,0.15);
+  border-radius:var(--r-sm);
+  color:white;font-size:1rem;font-weight:500;
+  margin-bottom:16px;transition:0.2s;
+  -webkit-appearance:none;
+}
+.linput:focus{outline:none;border-color:var(--gold2);background:rgba(255,255,255,0.12);box-shadow:0 0 0 3px rgba(232,184,75,0.15);}
+.linput::placeholder{color:rgba(255,255,255,0.3);}
+.login-btn{
+  width:100%;padding:15px;margin-top:4px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);
+  border:none;border-radius:var(--r-sm);
+  color:var(--g900);font-size:1rem;font-weight:800;
+  letter-spacing:0.3px;
+  box-shadow:0 6px 20px rgba(200,146,42,0.35);
+  transition:0.2s;
+}
+.login-btn:active{transform:scale(0.98);}
+.login-err{
+  background:rgba(192,57,43,0.2);border:1px solid rgba(192,57,43,0.4);
+  color:#ff9d95;padding:10px 14px;border-radius:8px;
+  font-size:0.85rem;text-align:center;margin-top:12px;display:none;
+}
+.login-contact{
+  text-align:center;margin-top:20px;
+  font-size:0.75rem;color:rgba(255,255,255,0.3);
+  line-height:1.8;
+}
+
+/* ============================================================
+   APP SHELL — MOBILE BOTTOM NAV
+   ============================================================ */
+#app{display:none;min-height:100vh;padding-bottom:calc(68px + var(--safe-bottom));}
+
+/* TOP HEADER BAR */
+.top-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--g800);
+  padding:14px 16px 14px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 2px 12px rgba(5,38,24,0.3);
+}
+.top-bar-brand{
+  flex:1;
+  font-size:0.88rem;font-weight:700;color:white;
+  line-height:1.3;
+}
+.top-bar-brand span{
+  display:block;font-family:'Noto Naskh Arabic',serif;
+  font-size:0.78rem;color:var(--gold2);font-weight:400;
+  direction:rtl;
+}
+.top-bar-actions{display:flex;gap:8px;align-items:center;}
+.icon-btn{
+  width:38px;height:38px;
+  background:rgba(255,255,255,0.1);
+  border:none;border-radius:10px;
+  color:white;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:0.15s;
+}
+.icon-btn:active{background:rgba(255,255,255,0.2);transform:scale(0.95);}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:var(--card);
+  border-top:1px solid rgba(0,0,0,0.08);
+  display:flex;
+  padding-bottom:var(--safe-bottom);
+  box-shadow:0 -4px 24px rgba(0,0,0,0.1);
+}
+.bn-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:10px 4px 8px;
+  border:none;background:none;
+  color:var(--ink3);font-size:0.6rem;font-weight:600;
+  letter-spacing:0.3px;text-transform:uppercase;
+  gap:4px;transition:0.15s;
+  position:relative;
+}
+.bn-item .bn-icon{font-size:1.3rem;transition:0.2s;}
+.bn-item.active{color:var(--g600);}
+.bn-item.active .bn-icon{transform:scale(1.15);}
+.bn-item.active::after{
+  content:'';position:absolute;top:0;left:20%;right:20%;
+  height:3px;background:var(--g600);border-radius:0 0 4px 4px;
+}
+.bn-badge{
+  position:absolute;top:6px;right:calc(50% - 18px);
+  background:var(--gold);color:white;
+  font-size:0.58rem;font-weight:700;
+  padding:1px 5px;border-radius:10px;
+  min-width:16px;text-align:center;
+}
+
+/* ============================================================
+   PAGE PANELS
+   ============================================================ */
+.page{display:none;padding:16px 16px 24px;animation:pageIn 0.25s ease;}
+.page.active{display:block;}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.page-title{font-size:1.5rem;font-weight:800;color:var(--g800);letter-spacing:-0.5px;}
+.page-sub{font-size:0.85rem;color:var(--ink3);font-weight:400;margin-top:2px;}
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;flex-wrap:wrap;gap:8px;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card{
+  background:var(--card);
+  border-radius:var(--r-lg);
+  padding:16px;
+  box-shadow:var(--shadow-sm);
+  border:1px solid var(--border);
+  margin-bottom:14px;
+}
+.card-title{
+  font-size:0.9rem;font-weight:700;color:var(--g800);
+  margin-bottom:12px;display:flex;align-items:center;gap:7px;
+}
+
+/* ============================================================
+   FORM CONTROLS — TOUCH OPTIMIZED
+   ============================================================ */
+.form-group{margin-bottom:14px;}
+.form-label{
+  font-size:0.72rem;font-weight:700;letter-spacing:0.8px;
+  text-transform:uppercase;color:var(--g700);
+  display:block;margin-bottom:6px;
+}
+.form-control{
+  width:100%;padding:13px 14px;
+  background:var(--bg);
+  border:1.5px solid rgba(17,122,85,0.2);
+  border-radius:var(--r-sm);
+  font-size:1rem;font-weight:500;color:var(--ink);
+  -webkit-appearance:none;appearance:none;
+  transition:0.2s;
+}
+.form-control:focus{
+  outline:none;border-color:var(--g600);
+  background:white;
+  box-shadow:0 0 0 3px rgba(17,122,85,0.1);
+}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.input-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+/* ============================================================
+   BUTTONS — BIG TOUCH TARGETS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:7px;padding:13px 20px;
+  border:none;border-radius:var(--r-sm);
+  font-size:0.9rem;font-weight:700;
+  font-family:'Outfit',sans-serif;
+  transition:0.15s;white-space:nowrap;
+  min-height:46px;
+}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--g600);color:white;box-shadow:0 4px 14px rgba(17,122,85,0.35);}
+.btn-primary:active{background:var(--g700);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--g900);box-shadow:0 4px 14px rgba(200,146,42,0.3);}
+.btn-ghost{background:var(--g50);color:var(--g700);border:1.5px solid rgba(17,122,85,0.2);}
+.btn-danger{background:var(--red2);color:var(--red);border:1px solid rgba(192,57,43,0.2);}
+.btn-wa{background:#25d366;color:white;box-shadow:0 4px 14px rgba(37,211,102,0.3);}
+.btn-full{width:100%;}
+.btn-sm{padding:9px 14px;font-size:0.8rem;min-height:36px;}
+.btn-icon{
+  width:40px;height:40px;padding:0;border-radius:10px;
+  font-size:1rem;
+}
+
+/* ============================================================
+   STATS GRID
+   ============================================================ */
+.stats-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.stats-4{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.stat-box{
+  background:var(--card);border-radius:var(--r-md);
+  padding:14px 12px;box-shadow:var(--shadow-sm);
+  border:1px solid var(--border);
+}
+.stat-icon{font-size:1.4rem;margin-bottom:6px;}
+.stat-val{font-size:1.5rem;font-weight:800;color:var(--g800);font-family:'JetBrains Mono',monospace;line-height:1;}
+.stat-lbl{font-size:0.72rem;color:var(--ink3);font-weight:600;margin-top:4px;}
+.stat-box.s-gold{background:var(--gold3);border-color:rgba(200,146,42,0.3);}
+.stat-box.s-gold .stat-val{color:var(--gold);}
+.stat-box.s-red{background:var(--red2);border-color:rgba(192,57,43,0.2);}
+.stat-box.s-red .stat-val{color:var(--red);}
+.stat-box.s-blue{background:var(--blue2);border-color:rgba(36,113,163,0.2);}
+.stat-box.s-blue .stat-val{color:var(--blue);}
+.stat-box.s-green{background:var(--g50);border-color:rgba(17,122,85,0.2);}
+.stat-box.s-green .stat-val{color:var(--g600);}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+.prog-wrap{background:#e8ede9;border-radius:999px;height:8px;overflow:hidden;}
+.prog-fill{background:linear-gradient(90deg,var(--g600),var(--gold2));height:100%;border-radius:999px;transition:width 0.6s ease;}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;}
+.b-paid{background:#d4f7e7;color:#0a5c35;border:1px solid #a0dfc0;}
+.b-unpaid{background:var(--red2);color:var(--red);border:1px solid rgba(192,57,43,0.2);}
+.b-class{background:rgba(17,122,85,0.1);color:var(--g700);border:1px solid rgba(17,122,85,0.15);}
+
+/* ============================================================
+   STUDENT CARDS (mobile list view)
+   ============================================================ */
+.student-card{
+  background:var(--card);border-radius:var(--r-md);
+  padding:14px 14px;
+  box-shadow:var(--shadow-sm);border:1px solid var(--border);
+  margin-bottom:10px;display:flex;align-items:center;gap:12px;
+}
+.s-avatar{
+  width:44px;height:44px;border-radius:14px;
+  background:linear-gradient(135deg,var(--g700),var(--g500));
+  color:white;font-weight:800;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.s-info{flex:1;min-width:0;}
+.s-name{font-weight:700;font-size:0.95rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.s-meta{font-size:0.78rem;color:var(--ink3);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.s-actions{display:flex;gap:6px;flex-shrink:0;}
+
+/* ============================================================
+   FEE REGISTER LIST
+   ============================================================ */
+.fee-row{
+  background:var(--card);border-radius:var(--r-md);
+  padding:14px;margin-bottom:10px;
+  box-shadow:var(--shadow-sm);border:1px solid var(--border);
+}
+.fee-row-top{display:flex;align-items:center;gap:10px;}
+.fee-row-bot{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:10px;padding-top:10px;
+  border-top:1px dashed rgba(17,122,85,0.12);
+  flex-wrap:wrap;gap:8px;
+}
+.fee-amount{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);font-size:0.95rem;}
+
+/* ============================================================
+   TOGGLE SWITCH — BIG TOUCH
+   ============================================================ */
+.tog{
+  width:52px;height:28px;border-radius:14px;
+  border:none;position:relative;transition:0.25s;flex-shrink:0;
+}
+.tog::after{
+  content:'';position:absolute;
+  left:4px;top:4px;width:20px;height:20px;
+  background:white;border-radius:50%;
+  transition:0.25s;box-shadow:0 1px 4px rgba(0,0,0,0.2);
+}
+.tog.on{background:var(--g600);}
+.tog.on::after{left:28px;}
+.tog.off{background:#e0e0e0;}
+
+/* ============================================================
+   MONTH PILLS
+   ============================================================ */
+.month-scroll{
+  display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  margin-bottom:14px;
+}
+.month-scroll::-webkit-scrollbar{display:none;}
+.mpill{
+  flex-shrink:0;padding:8px 14px;
+  border-radius:20px;border:1.5px solid rgba(17,122,85,0.2);
+  background:var(--card);color:var(--ink2);
+  font-size:0.8rem;font-weight:700;
+  transition:0.15s;white-space:nowrap;
+}
+.mpill.active{background:var(--g700);color:white;border-color:var(--g700);box-shadow:0 3px 10px rgba(13,92,64,0.3);}
+
+/* ============================================================
+   REPORT CARDS
+   ============================================================ */
+.rep-card{border-radius:var(--r-md);margin-bottom:12px;}
+.rep-card.paid{background:#f0faf5;border:1px solid #b8e8cc;border-left:5px solid var(--g500);}
+.rep-card.unpaid{background:#fff5f5;border:1px solid #f5c0c0;border-left:5px solid var(--red);}
+.rep-row{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;border-bottom:1px solid rgba(0,0,0,0.04);
+}
+.rep-row:last-child{border-bottom:none;}
+.rep-av{
+  width:38px;height:38px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.85rem;flex-shrink:0;
+}
+.av-paid{background:#c4f0da;color:#0a5c35;}
+.av-unpaid{background:#fdd8d8;color:#a12020;}
+.rep-info{flex:1;min-width:0;}
+.rep-name{font-weight:700;font-size:0.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rep-sub{font-size:0.75rem;color:var(--ink3);margin-top:1px;}
+.rep-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;}
+.rep-fee{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.88rem;}
+.rep-fee.paid{color:var(--g600);}
+.rep-fee.unpaid{color:var(--red);}
+.rep-section-title{
+  padding:12px 14px 8px;
+  font-size:0.78rem;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.rep-section-title.paid{color:#0a5c35;}
+.rep-section-title.unpaid{color:#a12020;}
+.rep-footer{
+  padding:10px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(0,0,0,0.06);
+  font-size:0.82rem;font-weight:700;
+}
+
+/* ============================================================
+   SEARCH BAR
+   ============================================================ */
+.search-wrap{position:relative;margin-bottom:14px;}
+.search-wrap input{padding-left:40px;}
+.search-icon{
+  position:absolute;left:13px;top:50%;transform:translateY(-50%);
+  font-size:0.95rem;pointer-events:none;
+}
+
+/* ============================================================
+   EXPENSE ITEM
+   ============================================================ */
+.exp-item{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 0;border-bottom:1px solid rgba(17,122,85,0.08);
+}
+.exp-item:last-child{border-bottom:none;}
+.exp-dot{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.exp-info{flex:1;min-width:0;}
+.exp-desc{font-weight:600;font-size:0.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.exp-meta{font-size:0.73rem;color:var(--ink3);margin-top:2px;}
+.exp-amt{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;}
+
+/* ============================================================
+   NOTICE ITEM
+   ============================================================ */
+.notice-item{
+  background:var(--gold3);border-radius:var(--r-md);
+  border-left:4px solid var(--gold);
+  padding:12px 14px;margin-bottom:10px;
+}
+.notice-title{font-weight:700;font-size:0.9rem;color:var(--ink);}
+.notice-msg{font-size:0.82rem;color:var(--ink2);margin-top:4px;line-height:1.5;}
+.notice-date{font-size:0.72rem;color:var(--ink3);margin-top:6px;}
+
+/* ============================================================
+   MODAL / BOTTOM SHEET
+   ============================================================ */
+.sheet-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+  z-index:500;align-items:flex-end;
+}
+.sheet-overlay.show{display:flex;animation:overlayIn 0.2s ease;}
+@keyframes overlayIn{from{opacity:0;}to{opacity:1;}}
+.sheet{
+  background:var(--card);border-radius:var(--r-xl) var(--r-xl) 0 0;
+  width:100%;max-height:92vh;overflow-y:auto;
+  padding-bottom:var(--safe-bottom);
+  animation:sheetUp 0.3s cubic-bezier(0.34,1.2,0.64,1);
+}
+@keyframes sheetUp{from{transform:translateY(100%);}to{transform:none;}}
+.sheet-handle{
+  width:40px;height:4px;background:#ddd;border-radius:2px;
+  margin:12px auto 8px;
+}
+.sheet-head{
+  background:var(--g800);
+  padding:16px 20px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sheet-title{font-size:1rem;font-weight:700;color:white;}
+.sheet-close{
+  width:32px;height:32px;background:rgba(255,255,255,0.15);
+  border:none;border-radius:8px;color:white;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.sheet-body{padding:20px 16px;}
+
+/* ============================================================
+   RECEIPT PREVIEW — MOBILE
+   ============================================================ */
+.receipt-box{
+  background:var(--bg);border:2px dashed rgba(17,122,85,0.2);
+  border-radius:var(--r-md);padding:18px 16px;
+  font-family:'JetBrains Mono',monospace;font-size:0.82rem;
+  line-height:1.7;color:var(--ink2);
+  margin-bottom:14px;
+}
+.receipt-arabic{
+  font-family:'Noto Naskh Arabic',serif;
+  font-size:1.1rem;color:var(--g800);text-align:center;
+  margin-bottom:8px;direction:rtl;
+}
+.receipt-divider{border:none;border-top:1px dashed var(--ink3);margin:8px 0;}
+
+/* ============================================================
+   DASHBOARD HERO
+   ============================================================ */
+.dash-hero{
+  background:linear-gradient(135deg,var(--g800) 0%,var(--g600) 100%);
+  border-radius:var(--r-xl);padding:20px 18px;
+  margin-bottom:14px;color:white;
+  position:relative;overflow:hidden;
+}
+.dash-hero::before{
+  content:'﷽';position:absolute;right:-10px;top:50%;
+  transform:translateY(-50%);
+  font-family:'Noto Naskh Arabic',serif;font-size:5rem;
+  color:rgba(255,255,255,0.04);pointer-events:none;
+  direction:rtl;
+}
+.dash-hero-title{font-size:1.1rem;font-weight:800;margin-bottom:2px;}
+.dash-hero-sub{font-size:0.8rem;opacity:0.7;margin-bottom:14px;}
+.dash-hero-stats{display:flex;gap:12px;flex-wrap:wrap;}
+.dash-hs{
+  background:rgba(255,255,255,0.12);border-radius:12px;
+  padding:10px 14px;flex:1;min-width:100px;
+}
+.dash-hs-v{font-size:1.3rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.dash-hs-l{font-size:0.68rem;opacity:0.75;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
+
+/* ============================================================
+   TABS (report)
+   ============================================================ */
+.tab-bar{
+  display:flex;gap:0;background:rgba(17,122,85,0.08);
+  border-radius:var(--r-sm);padding:4px;margin-bottom:14px;
+}
+.tab-btn{
+  flex:1;padding:9px 8px;border:none;border-radius:9px;
+  background:none;font-size:0.8rem;font-weight:700;
+  color:var(--ink3);transition:0.15s;
+  font-family:'Outfit',sans-serif;
+}
+.tab-btn.t-all.active{background:var(--blue);color:white;box-shadow:0 2px 8px rgba(36,113,163,0.3);}
+.tab-btn.t-paid.active{background:var(--g600);color:white;box-shadow:0 2px 8px rgba(17,122,85,0.3);}
+.tab-btn.t-unpaid.active{background:var(--red);color:white;box-shadow:0 2px 8px rgba(192,57,43,0.3);}
+
+/* ============================================================
+   FILTER ROW
+   ============================================================ */
+.filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.filter-row .form-control{flex:1;min-width:80px;padding:10px 12px;font-size:0.85rem;}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.empty{text-align:center;padding:40px 20px;}
+.empty .ei{font-size:2.8rem;margin-bottom:10px;}
+.empty p{font-size:0.9rem;color:var(--ink3);font-weight:500;}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+#toast{
+  position:fixed;bottom:calc(80px + var(--safe-bottom));left:16px;right:16px;
+  background:var(--g900);color:white;
+  padding:12px 18px;border-radius:14px;
+  font-size:0.88rem;font-weight:600;
+  box-shadow:var(--shadow-lg);z-index:9000;
+  opacity:0;transform:translateY(10px);transition:0.3s;
+  display:flex;align-items:center;gap:8px;
+}
+#toast.show{opacity:1;transform:none;}
+#toast.s{background:var(--g800);border-left:4px solid var(--gold2);}
+#toast.e{background:var(--red);}
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+.settings-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;border-bottom:1px solid rgba(17,122,85,0.08);
+  gap:10px;
+}
+.settings-row:last-child{border-bottom:none;}
+.settings-lbl{font-weight:600;font-size:0.9rem;}
+.settings-sub{font-size:0.75rem;color:var(--ink3);margin-top:2px;}
+
+/* ============================================================
+   PRINT STYLES — BEAUTIFUL PRINTOUT
+   ============================================================ */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: white !important; font-family: 'Outfit', Georgia, serif !important; }
+  #loginScreen, #app, .top-bar, .bottom-nav, .btn, .tab-bar,
+  .filter-row, .sheet-overlay, #toast, .tog,
+  .s-actions, .rep-right .btn, .filter-row { display: none !important; }
+
+  /* Print container */
+  #printZone { display: block !important; }
+
+  .print-doc {
+    display: block !important;
+    width: 100%;
+    max-width: 794px;
+    margin: 0 auto;
+    padding: 24px 28px;
+    font-family: 'Outfit', Georgia, serif;
+    font-size: 11pt;
+    color: #111;
+  }
+
+  /* Print Header */
+  .ph {
+    text-align: center;
+    border-bottom: 3px double #0a3d2e;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+  .ph-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 1.5rem;
+    color: #0a3d2e;
+    direction: rtl;
+    line-height: 1.6;
+    font-weight: 700;
+  }
+  .ph-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0a3d2e;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .ph-addr { font-size: 0.78rem; color: #555; margin-top: 4px; }
+  .ph-line { width: 60px; height: 2px; background: #c8922a; margin: 8px auto 0; border-radius: 2px; }
+
+  /* Print report title */
+  .pt-title {
+    background: #0a3d2e;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pt-title span { font-size: 0.8rem; opacity: 0.8; }
+
+  /* Print stats */
+  .ps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .ps-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .ps-box.green { border-color: #a0dfc0; background: #f0faf5; }
+  .ps-box.red { border-color: #f5b8b8; background: #fff5f5; }
+  .ps-box.gold { border-color: #e8c97a; background: #fdf8ee; }
+  .ps-box.blue { border-color: #aed6f1; background: #eaf4fb; }
+  .ps-val { font-size: 1.2rem; font-weight: 800; font-family: monospace; margin-bottom: 2px; }
+  .ps-box.green .ps-val { color: #0a5c35; }
+  .ps-box.red .ps-val { color: #a12020; }
+  .ps-box.gold .ps-val { color: #8a6010; }
+  .ps-box.blue .ps-val { color: #1a5080; }
+  .ps-lbl { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+  /* Print progress */
+  .pp-row { margin-bottom: 16px; }
+  .pp-label { font-size: 0.78rem; color: #555; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .pp-bar { height: 8px; background: #e8ede9; border-radius: 4px; overflow: hidden; }
+  .pp-fill { height: 100%; background: linear-gradient(90deg, #0a3d2e, #c8922a); border-radius: 4px; }
+
+  /* Print table */
+  .pt-section { margin-bottom: 20px; break-inside: avoid; }
+  .pt-sec-head {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pt-sec-head.paid { background: #d4f7e7; color: #0a5c35; }
+  .pt-sec-head.unpaid { background: #fde8e8; color: #a12020; }
+  .pt-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .pt-table th {
+    background: #0a3d2e; color: white;
+    padding: 7px 10px; text-align: left;
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .pt-table td { padding: 7px 10px; border-bottom: 1px solid #eee; }
+  .pt-table tr:nth-child(even) td { background: #f8faf8; }
+  .pt-table .fc { font-family: monospace; font-weight: 700; }
+  .pt-total {
+    display: flex; justify-content: flex-end; gap: 20px;
+    padding: 8px 10px; background: #f3f7f4;
+    border: 1px solid #ccc; border-radius: 4px;
+    font-size: 0.82rem; font-weight: 700; margin-top: 6px;
+  }
+  .print-footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.72rem;
+    color: #888;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+
+  /* Print receipt */
+  .receipt-print {
+    max-width: 380px;
+    margin: 0 auto;
+    border: 2px solid #0a3d2e;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 10pt;
+  }
+  .rp-head { background: #0a3d2e; color: white; padding: 14px 16px; text-align: center; }
+  .rp-head .ra { font-family: 'Noto Naskh Arabic', serif; font-size: 1.2rem; direction: rtl; }
+  .rp-head .rn { font-size: 0.9rem; font-weight: 700; margin-top: 4px; font-family: 'Outfit', sans-serif; }
+  .rp-head .rs { font-size: 0.72rem; opacity: 0.8; font-family: 'Outfit', sans-serif; }
+  .rp-body { padding: 14px 16px; }
+  .rp-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dotted #ddd; font-size: 0.78rem; }
+  .rp-row:last-child { border-bottom: none; }
+  .rp-row .lk { color: #555; }
+  .rp-row .vl { font-weight: 700; color: #111; text-align: right; }
+  .rp-status { text-align: center; padding: 10px; margin: 8px 0; border-radius: 6px; font-weight: 800; font-size: 0.95rem; font-family: 'Outfit', sans-serif; }
+  .rp-status.paid { background: #d4f7e7; color: #0a5c35; }
+  .rp-status.unpaid { background: #fde8e8; color: #a12020; }
+  .rp-footer { text-align: center; padding: 10px; border-top: 1px dotted #ddd; font-size: 0.72rem; color: #888; font-family: 'Outfit', sans-serif; }
+
+  /* Summary print */
+  .sum-month-block { break-inside: avoid; margin-bottom: 20px; }
+  .sum-month-head {
+    background: #0a3d2e; color: white;
+    padding: 7px 12px; border-radius: 4px;
+    font-weight: 700; font-size: 0.9rem;
+    display: flex; justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .sum-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .sum-col-head {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 4px 8px; border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .sum-col-head.paid { background: #d4f7e7; color: #0a5c35; }
+  .sum-col-head.unpaid { background: #fde8e8; color: #a12020; }
+  .sum-sname {
+    display: flex; justify-content: space-between;
+    padding: 4px 8px; border-radius: 4px; font-size: 0.78rem;
+    margin-bottom: 3px;
+  }
+  .sum-sname.paid { background: #f0faf5; }
+  .sum-sname.unpaid { background: #fff5f5; }
+}
+
+/* Hide print zone on screen */
+#printZone { display: none; }
+
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
+.divider{height:1px;background:rgba(17,122,85,0.1);margin:12px 0;}
+.text-mute{color:var(--ink3);}
+.text-green{color:var(--g600);}
+.text-gold{color:var(--gold);}
+.text-red{color:var(--red);}
+.fw-bold{font-weight:700;}
+.mt-8{margin-top:8px;}
+.mt-12{margin-top:12px;}
+.flex-between{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.flex-center{display:flex;align-items:center;gap:8px;}
+.mono{font-family:'JetBrains Mono',monospace;}
+</style>
+</head>
+<body>
+
+<!-- ==================== LOGIN ==================== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-arabic">كُلِّيَّاتُ دَارُ الْعُلُوم<br>حِفْظُ الْقُرْآن الْكَرِيم</div>
+      <div class="login-eng">Fee Management System</div>
+      <div class="login-divider"><span></span><em>✦</em><span></span></div>
+    </div>
+    <label class="lbl">Username</label>
+    <input class="linput" type="text" id="loginUser" placeholder="admin" autocomplete="username">
+    <label class="lbl">Password</label>
+    <input class="linput" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+    <button class="login-btn" onclick="doLogin()">🔐 Login</button>
+    <div class="login-err" id="loginErr">Invalid username or password</div>
+    <div class="login-contact">📍 Kakkamunai 06, Kinniya<br>📞 0755252308</div>
+  </div>
+</div>
+
+<!-- ==================== APP ==================== -->
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar-brand">
+      Kulliyathu Fee Register
+      <span>كُلِّيَّاتُ دَارُ الْعُلُوم</span>
+    </div>
+    <div class="top-bar-actions">
+      <button class="icon-btn" onclick="showSheet('addStudentSheet')" title="Add student">➕</button>
+      <button class="icon-btn" onclick="doLogout()" title="Logout">🔓</button>
+    </div>
+  </div>
+
+  <!-- ===== PAGES ===== -->
+
+  <!-- DASHBOARD -->
+  <div id="page-dash" class="page active">
+    <div class="dash-hero">
+      <div class="dash-hero-title">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْم</div>
+      <div class="dash-hero-sub" id="dashDate">Loading…</div>
+      <div class="dash-hero-stats" id="dashHeroStats"></div>
+    </div>
+    <div class="stats-4" id="dashStats"></div>
+    <div class="card">
+      <div class="card-title">📅 <span id="dashMonthName">This Month</span></div>
+      <div id="dashGlance"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚠️ Unpaid This Month</div>
+      <div id="dashUnpaid"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">💸 Recent Expenses</div>
+      <div id="dashExpenses"></div>
+    </div>
+  </div>
+
+  <!-- STUDENTS -->
+  <div id="page-students" class="page">
+    <div class="section-head" style="margin-bottom:12px;">
+      <div><div class="page-title">Students</div><div class="page-sub" id="studentCount">0 registered</div></div>
+      <button class="btn btn-primary btn-sm" onclick="showSheet('addStudentSheet')">➕ Add</button>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="form-control" type="text" id="stuSearch" placeholder="Search name or class…" oninput="renderStudents()">
+    </div>
+    <div id="studentList"></div>
+  </div>
+
+  <!-- FEE REGISTER -->
+  <div id="page-fees" class="page">
+    <div class="section-head" style="margin-bottom:12px;">
+      <div><div class="page-title">Fee Register</div><div class="page-sub">Toggle payments</div></div>
+      <div class="flex-center" style="gap:6px;">
+        <select class="form-control" id="feeYear" onchange="renderFees()" style="width:80px;padding:9px 10px;font-size:0.85rem;"></select>
+      </div>
+    </div>
+    <div class="month-scroll" id="monthPills"></div>
+    <div class="flex-between" style="margin-bottom:12px;">
+      <div class="search-wrap" style="flex:1;margin-bottom:0;">
+        <span class="search-icon">🔍</span>
+        <input class="form-control" type="text" id="feeSearch" placeholder="Search…" oninput="renderFees()" style="padding-left:36px;">
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;">
+      <button class="btn btn-ghost btn-sm" style="flex:1;" onclick="markAll(true)">✅ All Paid</button>
+      <button class="btn btn-danger btn-sm" style="flex:1;" onclick="markAll(false)">❌ All Unpaid</button>
+    </div>
+    <div id="feeList"></div>
+  </div>
+
+  <!-- REPORTS -->
+  <div id="page-reports" class="page">
+    <div class="section-head" style="margin-bottom:12px;">
+      <div><div class="page-title">Reports</div><div class="page-sub">Paid & Unpaid view</div></div>
+      <button class="btn btn-ghost btn-sm" onclick="printReport()">🖨️ Print</button>
+    </div>
+    <div class="filter-row">
+      <select class="form-control" id="repYear" onchange="renderReports()" style="width:80px;"></select>
+      <select class="form-control" id="repMonth" onchange="renderReports()"></select>
+      <select class="form-control" id="repClass" onchange="renderReports()"></select>
+    </div>
+    <div class="tab-bar">
+      <button class="tab-btn t-all active" id="rtab-all" onclick="setRepTab('all')">📊 All</button>
+      <button class="tab-btn t-paid" id="rtab-paid" onclick="setRepTab('paid')">✅ Paid</button>
+      <button class="tab-btn t-unpaid" id="rtab-unpaid" onclick="setRepTab('unpaid')">❌ Unpaid</button>
+    </div>
+    <div class="stats-4" id="repStats" style="margin-bottom:12px;"></div>
+    <div class="card" style="padding:12px 14px;">
+      <div class="flex-between" style="margin-bottom:6px;">
+        <span style="font-size:0.8rem;font-weight:700;color:var(--g700);" id="repProgLabel">Progress</span>
+        <span class="mono" style="font-size:0.82rem;color:var(--ink3);" id="repPct">0%</span>
+      </div>
+      <div class="prog-wrap"><div class="prog-fill" id="repProgBar" style="width:0%"></div></div>
+      <div class="flex-between mt-8" style="font-size:0.75rem;color:var(--ink3);">
+        <span id="repCollected"></span><span id="repExpected"></span>
+      </div>
+    </div>
+    <button class="btn btn-wa btn-full" style="margin-bottom:12px;" onclick="bulkRemind()">📱 Remind All Unpaid via WhatsApp</button>
+    <div id="reportContent"></div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div id="page-summary" class="page">
+    <div class="section-head" style="margin-bottom:12px;">
+      <div><div class="page-title">Summary</div><div class="page-sub">Monthly overview</div></div>
+      <button class="btn btn-ghost btn-sm" onclick="printSummary()">🖨️ Print</button>
+    </div>
+    <div class="filter-row">
+      <select class="form-control" id="sumYear" onchange="renderSummary()"></select>
+      <select class="form-control" id="sumMonth" onchange="renderSummary()">
+        <option value="all">All Months</option>
+      </select>
+    </div>
+    <div class="stats-4" id="sumStats" style="margin-bottom:12px;"></div>
+    <div id="summaryContent"></div>
+  </div>
+
+  <!-- MORE (expenses, notices, settings) -->
+  <div id="page-more" class="page">
+    <div class="page-title" style="margin-bottom:14px;">More</div>
+
+    <!-- Quick actions -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <button class="btn btn-ghost" style="flex-direction:column;gap:6px;height:70px;border-radius:var(--r-md);" onclick="showSheet('expSheet')">💸<span style="font-size:0.78rem;font-weight:700;">Add Expense</span></button>
+      <button class="btn btn-ghost" style="flex-direction:column;gap:6px;height:70px;border-radius:var(--r-md);" onclick="showSheet('noticeSheet')">📌<span style="font-size:0.78rem;font-weight:700;">Post Notice</span></button>
+      <button class="btn btn-ghost" style="flex-direction:column;gap:6px;height:70px;border-radius:var(--r-md);" onclick="exportData()">📤<span style="font-size:0.78rem;font-weight:700;">Export Data</span></button>
+      <button class="btn btn-ghost" style="flex-direction:column;gap:6px;height:70px;border-radius:var(--r-md);" onclick="showSheet('passSheet')">🔐<span style="font-size:0.78rem;font-weight:700;">Password</span></button>
+    </div>
+
+    <!-- Expenses -->
+    <div class="card">
+      <div class="card-title flex-between">
+        <span>💸 Expenses</span>
+        <div class="flex-center" style="gap:6px;">
+          <select class="form-control" id="expFYear" onchange="renderExpenses()" style="width:72px;padding:6px 8px;font-size:0.78rem;"></select>
+          <select class="form-control" id="expFMonth" onchange="renderExpenses()" style="width:100px;padding:6px 8px;font-size:0.78rem;"></select>
+        </div>
+      </div>
+      <div id="expenseList"></div>
+      <div id="expTotal" style="text-align:right;font-weight:700;font-size:0.88rem;margin-top:8px;"></div>
+    </div>
+
+    <!-- Notices -->
+    <div class="card">
+      <div class="card-title">📌 Notices</div>
+      <div id="noticeList"></div>
+    </div>
+
+    <!-- Madrasha info -->
+    <div class="card">
+      <div class="card-title">🏫 Madrasha Info</div>
+      <div style="font-size:0.85rem;line-height:1.9;color:var(--ink2);">
+        <strong>Kulliyathuth Dharul Uloom Hiflul Quran Madrasha</strong><br>
+        📍 Kakkamunai 06, Kinniya<br>📞 0755252308<br>
+        <span style="color:var(--ink3);">System v3.0 — Data saved locally</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="bn-item active" onclick="nav('dash')">
+      <span class="bn-icon">🏠</span>Home
+    </button>
+    <button class="bn-item" onclick="nav('students')">
+      <span class="bn-icon">👥</span>Students
+      <span class="bn-badge" id="bnBadge">0</span>
+    </button>
+    <button class="bn-item" onclick="nav('fees')">
+      <span class="bn-icon">💳</span>Fees
+    </button>
+    <button class="bn-item" onclick="nav('reports')">
+      <span class="bn-icon">📋</span>Reports
+    </button>
+    <button class="bn-item" onclick="nav('summary')">
+      <span class="bn-icon">📊</span>Summary
+    </button>
+    <button class="bn-item" onclick="nav('more')">
+      <span class="bn-icon">⋯</span>More
+    </button>
+  </nav>
+</div>
+
+<!-- ==================== BOTTOM SHEETS ==================== -->
+
+<!-- ADD/EDIT STUDENT SHEET -->
+<div class="sheet-overlay" id="addStudentSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-title" id="addStudentSheetTitle">➕ New Student</span>
+      <button class="sheet-close" onclick="closeSheet('addStudentSheet')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="form-group">
+        <label class="form-label">Full Name *</label>
+        <input class="form-control" id="sName" placeholder="e.g. Muhammad Ahmad bin Ali" maxlength="60">
+      </div>
+      <div class="input-row">
+        <div class="form-group">
+          <label class="form-label">Class *</label>
+          <select class="form-control" id="sClass">
+            <option value="">— Select —</option>
+            <option>Hifz 1</option><option>Hifz 2</option><option>Hifz 3</option><option>Hifz 4</option>
+            <option>Tajweed</option><option>I'dadi</option><option>Aalimiyyah 1</option><option>Aalimiyyah 2</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fee (LKR) *</label>
+          <input class="form-control" type="number" id="sFee" value="1500" min="0" step="50">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Parent / Guardian</label>
+        <input class="form-control" id="sParent" placeholder="Parent name" maxlength="60">
+      </div>
+      <div class="input-row">
+        <div class="form-group">
+          <label class="form-label">Phone (WhatsApp)</label>
+          <input class="form-control" type="tel" id="sPhone" placeholder="0771234567" maxlength="15">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Enroll Year</label>
+          <input class="form-control" type="number" id="sYear" value="2025" min="2000" max="2099">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes</label>
+        <input class="form-control" id="sNotes" placeholder="Optional notes" maxlength="120">
+      </div>
+      <input type="hidden" id="sId">
+      <button class="btn btn-primary btn-full" onclick="saveStudent()">💾 Save Student</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECEIPT SHEET -->
+<div class="sheet-overlay" id="receiptSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-title">🧾 Fee Receipt</span>
+      <button class="sheet-close" onclick="closeSheet('receiptSheet')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="receipt-box" id="receiptBox"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <button class="btn btn-wa" onclick="sendWA()">📱 WhatsApp</button>
+        <button class="btn btn-ghost" onclick="copyReceipt()">📋 Copy</button>
+        <button class="btn btn-ghost" style="grid-column:1/-1;" onclick="printReceipt()">🖨️ Print</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD EXPENSE SHEET -->
+<div class="sheet-overlay" id="expSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-title">💸 Add Expense</span>
+      <button class="sheet-close" onclick="closeSheet('expSheet')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="form-group">
+        <label class="form-label">Description *</label>
+        <input class="form-control" id="expDesc" placeholder="e.g. Teacher salary" maxlength="80">
+      </div>
+      <div class="input-row">
+        <div class="form-group">
+          <label class="form-label">Amount (LKR) *</label>
+          <input class="form-control" type="number" id="expAmt" placeholder="0" min="0" step="50">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-control" id="expType">
+            <option value="salary">💼 Salary</option>
+            <option value="utility">💡 Utility</option>
+            <option value="maintenance">🔧 Maintenance</option>
+            <option value="stationery">📝 Stationery</option>
+            <option value="other">📦 Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input class="form-control" type="date" id="expDate">
+      </div>
+      <button class="btn btn-primary btn-full" onclick="addExpense()">💾 Save Expense</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTICE SHEET -->
+<div class="sheet-overlay" id="noticeSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-title">📌 Post Notice</span>
+      <button class="sheet-close" onclick="closeSheet('noticeSheet')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="form-group">
+        <label class="form-label">Title *</label>
+        <input class="form-control" id="noTitle" placeholder="Notice heading" maxlength="80">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" id="noMsg" rows="4" placeholder="Type message…" maxlength="400" style="resize:vertical;"></textarea>
+      </div>
+      <button class="btn btn-gold btn-full" onclick="addNotice()">📌 Post Notice</button>
+    </div>
+  </div>
+</div>
+
+<!-- PASSWORD SHEET -->
+<div class="sheet-overlay" id="passSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-title">🔐 Change Password</span>
+      <button class="sheet-close" onclick="closeSheet('passSheet')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="form-group">
+        <label class="form-label">Current Password</label>
+        <input class="form-control" type="password" id="cPass" placeholder="Current password">
+      </div>
+      <div class="form-group">
+        <label class="form-label">New Password</label>
+        <input class="form-control" type="password" id="nPass" placeholder="New password (min 4)">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirm</label>
+        <input class="form-control" type="password" id="cfPass" placeholder="Confirm new password">
+      </div>
+      <button class="btn btn-primary btn-full" onclick="changePass()">💾 Update Password</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRINT ZONE (hidden, rendered before print) -->
+<div id="printZone"></div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ============================================================
+//  CORE DATA
+// ============================================================
+const KEY = 'kulliyathu_v3';
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const NOW = new Date();
+const CUR_YEAR = NOW.getFullYear();
+const CUR_MONTH = NOW.getMonth();
+let curReceiptData = null;
+let repTab = 'all';
+let activeMonthIdx = CUR_MONTH;
+
+function db() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || seed(); }
+  catch(e) { return seed(); }
+}
+function setDb(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
+function seed() {
+  return { user:'admin', pass:'admin123', students:[], payments:{}, expenses:[], notices:[] };
+}
+function pk(sid, y, m) { return `${sid}_${y}_${m}`; }
+function paid(d, sid, y, m) { return d.payments[pk(sid,y,m)] === true; }
+
+// ============================================================
+//  SEED DEMO DATA
+// ============================================================
+(function() {
+  const d = db();
+  if (d.students.length) return;
+  d.students = [
+    {id:'s001',name:'Muhammad Rashid',cls:'Hifz 2',fee:1500,parent:'Ibrahim Rashid',phone:'0771234567',year:2024,enrolled:'01/01/2024',notes:''},
+    {id:'s002',name:'Amina bint Yusuf',cls:'Tajweed',fee:1200,parent:'Yusuf Ahmed',phone:'0762345678',year:2024,enrolled:'01/01/2024',notes:''},
+    {id:'s003',name:'Hafiz Usman Ali',cls:'Hifz 3',fee:1800,parent:'Ali Hassan',phone:'0753456789',year:2024,enrolled:'15/02/2024',notes:''},
+    {id:'s004',name:'Fatimah bint Omar',cls:'Hifz 1',fee:1200,parent:'Omar Farouq',phone:'0741234567',year:2025,enrolled:'01/03/2025',notes:''},
+  ];
+  const y=CUR_YEAR, m=CUR_MONTH;
+  d.payments[pk('s001',y,m)]=true; d.payments[pk('s002',y,m)]=true;
+  d.payments[pk('s001',y,m-1)]=true; d.payments[pk('s002',y,m-1)]=true; d.payments[pk('s003',y,m-1)]=true;
+  d.expenses.push({id:'e001',desc:'Teacher Salary – March',amount:25000,type:'salary',date:NOW.toISOString().split('T')[0]});
+  d.notices.push({id:'n001',title:'Welcome!',msg:'Monthly fee management is now digital. JazakAllahu Khairan.',date:'01 Jan 2025'});
+  setDb(d);
+})();
+
+// ============================================================
+//  LOGIN / LOGOUT
+// ============================================================
+function doLogin() {
+  const d = db();
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if (u === d.user && p === d.pass) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    initApp();
+  } else {
+    const e = document.getElementById('loginErr');
+    e.style.display = 'block';
+    setTimeout(() => e.style.display='none', 3000);
+  }
+}
+document.addEventListener('keydown', e => { if(e.key==='Enter' && document.getElementById('loginScreen').style.display!=='none') doLogin(); });
+function doLogout() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  ['loginUser','loginPass'].forEach(id => document.getElementById(id).value='');
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+function initApp() {
+  document.getElementById('dashDate').textContent = NOW.toLocaleDateString('en-LK',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('dashMonthName').textContent = MONTHS[CUR_MONTH] + ' ' + CUR_YEAR;
+  populateYears(); populateMonthPills(); populateRepFilters(); populateSumMonths(); populateExpFilters();
+  document.getElementById('expDate').value = NOW.toISOString().split('T')[0];
+  renderAll();
+}
+function renderAll() {
+  renderDash(); renderStudents(); renderFees(); renderReports(); renderSummary(); renderExpenses(); renderNotices(); updateBadge();
+}
+function updateBadge() {
+  const n = db().students.length;
+  document.getElementById('bnBadge').textContent = n;
+  document.getElementById('studentCount').textContent = n + ' registered';
+}
+
+// ============================================================
+//  NAVIGATION
+// ============================================================
+function nav(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const btns = document.querySelectorAll('.bn-item');
+  const map = {dash:0,students:1,fees:2,reports:3,summary:4,more:5};
+  if(map[id]!==undefined) btns[map[id]].classList.add('active');
+  if(id==='reports') { populateRepFilters(); renderReports(); }
+  if(id==='fees') renderFees();
+  if(id==='summary') renderSummary();
+  if(id==='more') { renderExpenses(); renderNotices(); }
+  window.scrollTo(0,0);
+}
+
+// ============================================================
+//  YEAR SELECTS
+// ============================================================
+function populateYears() {
+  const years = [];
+  for(let y=CUR_YEAR-2;y<=CUR_YEAR+1;y++) years.push(y);
+  ['feeYear','repYear','sumYear'].forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.innerHTML = '';
+    years.forEach(y => {
+      const o=document.createElement('option'); o.value=y; o.textContent=y;
+      if(y===CUR_YEAR) o.selected=true; el.appendChild(o);
+    });
+  });
+}
+function populateMonthPills() {
+  const wrap = document.getElementById('monthPills');
+  wrap.innerHTML = '';
+  MONTHS.forEach((m,i) => {
+    const b = document.createElement('button');
+    b.className = 'mpill' + (i===activeMonthIdx?' active':'');
+    b.textContent = m.slice(0,3);
+    b.onclick = () => { activeMonthIdx=i; document.querySelectorAll('.mpill').forEach(p=>p.classList.remove('active')); b.classList.add('active'); renderFees(); };
+    wrap.appendChild(b);
+  });
+  // scroll to active
+  setTimeout(()=>{ const a=wrap.querySelector('.active'); if(a) a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); },100);
+}
+function populateRepFilters() {
+  const mel = document.getElementById('repMonth');
+  mel.innerHTML = '';
+  MONTHS.forEach((m,i) => {
+    const o=document.createElement('option'); o.value=i; o.textContent=m;
+    if(i===CUR_MONTH) o.selected=true; mel.appendChild(o);
+  });
+  const d = db();
+  const cel = document.getElementById('repClass');
+  const classes = [...new Set(d.students.map(s=>s.cls))].sort();
+  cel.innerHTML = '<option value="all">All Classes</option>';
+  classes.forEach(c => { const o=document.createElement('option'); o.value=c; o.textContent=c; cel.appendChild(o); });
+}
+function populateSumMonths() {
+  const el = document.getElementById('sumMonth');
+  MONTHS.forEach((m,i) => {
+    const o=document.createElement('option'); o.value=i; o.textContent=m;
+    if(i===CUR_MONTH) o.selected=true; el.appendChild(o);
+  });
+}
+function populateExpFilters() {
+  const years=[]; for(let y=CUR_YEAR-2;y<=CUR_YEAR+1;y++) years.push(y);
+  const yel=document.getElementById('expFYear');
+  years.forEach(y=>{ const o=document.createElement('option'); o.value=y; o.textContent=y; if(y===CUR_YEAR) o.selected=true; yel.appendChild(o); });
+  const mel=document.getElementById('expFMonth');
+  mel.innerHTML='<option value="all">All Months</option>';
+  MONTHS.forEach((m,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=m; if(i===CUR_MONTH) o.selected=true; mel.appendChild(o); });
+}
+
+// ============================================================
+//  SHEET HELPERS
+// ============================================================
+function showSheet(id) { document.getElementById(id).classList.add('show'); }
+function closeSheet(id) { document.getElementById(id).classList.remove('show'); }
+// close on overlay click
+document.querySelectorAll('.sheet-overlay').forEach(el => {
+  el.addEventListener('click', e => { if(e.target===el) el.classList.remove('show'); });
+});
+
+// ============================================================
+//  STUDENTS
+// ============================================================
+function saveStudent() {
+  const name = document.getElementById('sName').value.trim();
+  const cls = document.getElementById('sClass').value;
+  const fee = Number(document.getElementById('sFee').value) || 0;
+  const parent = document.getElementById('sParent').value.trim();
+  const phone = document.getElementById('sPhone').value.trim();
+  const year = Number(document.getElementById('sYear').value) || CUR_YEAR;
+  const notes = document.getElementById('sNotes').value.trim();
+  const editId = document.getElementById('sId').value;
+  if(!name) { toast('Enter student name','e'); return; }
+  if(!cls) { toast('Select a class','e'); return; }
+  const d = db();
+  if(editId) {
+    const idx = d.students.findIndex(s=>s.id===editId);
+    if(idx!==-1) d.students[idx] = {...d.students[idx],name,cls,fee,parent,phone,year,notes};
+    toast('✅ Student updated');
+  } else {
+    d.students.push({id:'s'+Date.now(),name,cls,fee,parent,phone,year,notes,enrolled:NOW.toLocaleDateString('en-LK')});
+    toast('✅ Student added');
+  }
+  setDb(d);
+  ['sName','sParent','sPhone','sNotes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('sClass').value=''; document.getElementById('sFee').value='1500';
+  document.getElementById('sYear').value=CUR_YEAR; document.getElementById('sId').value='';
+  document.getElementById('addStudentSheetTitle').textContent='➕ New Student';
+  closeSheet('addStudentSheet');
+  renderStudents(); renderDash(); updateBadge(); populateRepFilters();
+}
+function editStudent(id) {
+  const s = db().students.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('sName').value=s.name; document.getElementById('sClass').value=s.cls;
+  document.getElementById('sFee').value=s.fee; document.getElementById('sParent').value=s.parent||'';
+  document.getElementById('sPhone').value=s.phone||''; document.getElementById('sYear').value=s.year||CUR_YEAR;
+  document.getElementById('sNotes').value=s.notes||''; document.getElementById('sId').value=id;
+  document.getElementById('addStudentSheetTitle').textContent='✏️ Edit Student';
+  showSheet('addStudentSheet');
+}
+function deleteStudent(id) {
+  if(!confirm('Delete this student?')) return;
+  const d=db(); d.students=d.students.filter(s=>s.id!==id); delete d.payments[id];
+  setDb(d); renderStudents(); renderDash(); updateBadge(); toast('🗑️ Deleted');
+}
+function renderStudents() {
+  const d=db(); const q=(document.getElementById('stuSearch')?.value||'').toLowerCase();
+  const list=d.students.filter(s=>s.name.toLowerCase().includes(q)||s.cls.toLowerCase().includes(q));
+  const el=document.getElementById('studentList');
+  if(!list.length){el.innerHTML=`<div class="empty"><div class="ei">👥</div><p>${q?'No results':'No students yet'}</p></div>`;return;}
+  el.innerHTML=list.map((s,i)=>`
+    <div class="student-card">
+      <div class="s-avatar">${initials(s.name)}</div>
+      <div class="s-info">
+        <div class="s-name">${esc(s.name)}</div>
+        <div class="s-meta">
+          <span class="badge b-class">${esc(s.cls)}</span>
+          <span class="mono" style="font-size:0.72rem;color:var(--gold);">LKR ${s.fee.toLocaleString()}</span>
+        </div>
+        <div class="s-meta" style="margin-top:3px;">${s.phone?`<span style="font-size:0.72rem;">📞 ${esc(s.phone)}</span>`:''}</div>
+      </div>
+      <div class="s-actions">
+        <button class="btn btn-ghost btn-icon" onclick="editStudent('${s.id}')">✏️</button>
+        <button class="btn btn-danger btn-icon" onclick="deleteStudent('${s.id}')">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+//  FEE REGISTER
+// ============================================================
+function togglePayment(sid, y, m) {
+  const d=db(); const k=pk(sid,y,m); d.payments[k]=!d.payments[k]; setDb(d); renderFees(); renderDash();
+}
+function markAll(val) {
+  const d=db(); const y=Number(document.getElementById('feeYear').value);
+  d.students.forEach(s=>{d.payments[pk(s.id,y,activeMonthIdx)]=val;}); setDb(d); renderFees(); toast(val?'✅ All marked paid':'❌ All marked unpaid');
+}
+function renderFees() {
+  const d=db(); const y=Number(document.getElementById('feeYear')?.value||CUR_YEAR);
+  const q=(document.getElementById('feeSearch')?.value||'').toLowerCase();
+  const list=d.students.filter(s=>s.name.toLowerCase().includes(q)||s.cls.toLowerCase().includes(q));
+  const el=document.getElementById('feeList');
+  if(!list.length){el.innerHTML=`<div class="empty"><div class="ei">💳</div><p>${d.students.length?'No match':'Add students first'}</p></div>`;return;}
+  el.innerHTML=list.map((s,i)=>{
+    const p=paid(d,s.id,y,activeMonthIdx);
+    return `
+    <div class="fee-row">
+      <div class="fee-row-top">
+        <div class="s-avatar" style="width:38px;height:38px;font-size:0.85rem;">${initials(s.name)}</div>
+        <div style="flex:1;min-width:0;">
+          <div class="s-name">${esc(s.name)}</div>
+          <div class="s-meta"><span class="badge b-class">${esc(s.cls)}</span></div>
+        </div>
+        <button class="tog ${p?'on':'off'}" onclick="togglePayment('${s.id}',${y},${activeMonthIdx})"></button>
+      </div>
+      <div class="fee-row-bot">
+        <span class="fee-amount">LKR ${s.fee.toLocaleString()}</span>
+        <span class="badge ${p?'b-paid':'b-unpaid'}">${p?'✅ Paid':'❌ Unpaid'}</span>
+        <button class="btn btn-ghost btn-sm" onclick="openReceipt('${s.id}',${y},${activeMonthIdx})">🧾 Receipt</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+//  RECEIPT
+// ============================================================
+function openReceipt(sid, y, m) {
+  const d=db(); const s=d.students.find(x=>x.id===sid); if(!s) return;
+  const p=paid(d,sid,y,m);
+  const rno='RCP-'+y+'-'+String(m+1).padStart(2,'0')+'-'+sid.slice(-4).toUpperCase();
+  const dt=NOW.toLocaleDateString('en-LK',{day:'2-digit',month:'long',year:'numeric'});
+  const lines=[
+    '﷽','━━━━━━━━━━━━━━━━━━━━━━',
+    'KULLIYATHUTH DHARUL ULOOM','HIFLUL QURAN MADRASHA',
+    'Kakkamunai 06, Kinniya','📞 0755252308',
+    '━━━━━━━━━━━━━━━━━━━━━━',
+    p?'📄 FEE RECEIPT':'⚠️ FEE REMINDER','',
+    `Receipt No : ${rno}`,`Date       : ${dt}`,'',
+    `Student    : ${s.name}`,`Class      : ${s.cls}`,
+    `Month      : ${MONTHS[m]} ${y}`,`Amount     : LKR ${s.fee.toLocaleString()}`,
+    `Status     : ${p?'✅ PAID':'❌ UNPAID'}`,'',
+    `Parent     : ${s.parent||'N/A'}`,'',
+    '━━━━━━━━━━━━━━━━━━━━━━',
+    p?'Jazakallahu Khairan 🤲':'Kindly pay at the earliest. JazakAllahu Khairan 🙏',
+    '━━━━━━━━━━━━━━━━━━━━━━'
+  ];
+  curReceiptData={s,y,m,p,rno,dt,lines};
+  document.getElementById('receiptBox').innerHTML=`
+    <div class="receipt-arabic">كُلِّيَّاتُ دَارُ الْعُلُوم · حِفْظُ الْقُرْآن</div>
+    <hr class="receipt-divider">
+    ${lines.slice(7).map(l=>l?`<div>${esc(l)}</div>`:'<br>').join('')}
+  `;
+  showSheet('receiptSheet');
+}
+function sendWA() {
+  if(!curReceiptData) return;
+  const {s,lines}=curReceiptData;
+  if(!s.phone){toast('No phone saved','e');return;}
+  const ph=s.phone.replace(/\D/g,'');
+  const intl=ph.startsWith('0')?'94'+ph.slice(1):ph;
+  window.open(`https://wa.me/${intl}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+}
+function copyReceipt() {
+  if(!curReceiptData) return;
+  navigator.clipboard.writeText(curReceiptData.lines.join('\n')).then(()=>toast('📋 Copied'));
+}
+function printReceipt() {
+  if(!curReceiptData) return;
+  const {s,y,m,p,rno,dt}=curReceiptData;
+  document.getElementById('printZone').innerHTML=`
+    <div class="print-doc">
+      <div class="receipt-print">
+        <div class="rp-head">
+          <div class="ra">كُلِّيَّاتُ دَارُ الْعُلُوم · حِفْظُ الْقُرْآن</div>
+          <div class="rn">KULLIYATHUTH DHARUL ULOOM<br>HIFLUL QURAN MADRASHA</div>
+          <div class="rs">Kakkamunai 06, Kinniya · 0755252308</div>
+        </div>
+        <div class="rp-body">
+          <div class="rp-status ${p?'paid':'unpaid'}">${p?'✅ FEE RECEIPT':'⚠️ FEE REMINDER'}</div>
+          <div class="rp-row"><span class="lk">Receipt No</span><span class="vl">${rno}</span></div>
+          <div class="rp-row"><span class="lk">Date</span><span class="vl">${dt}</span></div>
+          <div class="rp-row"><span class="lk">Student</span><span class="vl">${esc(s.name)}</span></div>
+          <div class="rp-row"><span class="lk">Class</span><span class="vl">${esc(s.cls)}</span></div>
+          <div class="rp-row"><span class="lk">Month</span><span class="vl">${MONTHS[m]} ${y}</span></div>
+          <div class="rp-row"><span class="lk">Amount</span><span class="vl">LKR ${s.fee.toLocaleString()}</span></div>
+          <div class="rp-row"><span class="lk">Status</span><span class="vl">${p?'✅ PAID':'❌ UNPAID'}</span></div>
+          <div class="rp-row"><span class="lk">Parent</span><span class="vl">${esc(s.parent||'N/A')}</span></div>
+        </div>
+        <div class="rp-footer">Jazakallahu Khairan · Kulliyathuth Dharul Uloom Hiflul Quran Madrasha</div>
+      </div>
+    </div>
+  `;
+  setTimeout(()=>window.print(), 100);
+}
+
+// ============================================================
+//  REPORTS
+// ============================================================
+function setRepTab(t) {
+  repTab=t;
+  ['all','paid','unpaid'].forEach(x=>{
+    const b=document.getElementById('rtab-'+x);
+    b.className='tab-btn t-'+x+(x===t?' active':'');
+  });
+  renderReports();
+}
+function renderReports() {
+  const d=db();
+  const y=Number(document.getElementById('repYear')?.value||CUR_YEAR);
+  const mi=Number(document.getElementById('repMonth')?.value??CUR_MONTH);
+  const cf=document.getElementById('repClass')?.value||'all';
+  let stus=d.students.filter(s=>cf==='all'||s.cls===cf);
+  const paidL=stus.filter(s=>paid(d,s.id,y,mi));
+  const unpaidL=stus.filter(s=>!paid(d,s.id,y,mi));
+  const totExp=stus.reduce((a,s)=>a+s.fee,0);
+  const totColl=paidL.reduce((a,s)=>a+s.fee,0);
+  const totPend=unpaidL.reduce((a,s)=>a+s.fee,0);
+  const pct=totExp?Math.round(totColl/totExp*100):0;
+
+  document.getElementById('repStats').innerHTML=`
+    <div class="stat-box s-green"><div class="stat-icon">✅</div><div class="stat-val">${paidL.length}</div><div class="stat-lbl">Paid</div></div>
+    <div class="stat-box s-red"><div class="stat-icon">❌</div><div class="stat-val">${unpaidL.length}</div><div class="stat-lbl">Unpaid</div></div>
+    <div class="stat-box s-gold"><div class="stat-icon">💰</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${(totColl/1000).toFixed(1)}k</div><div class="stat-lbl">Collected</div></div>
+    <div class="stat-box s-red"><div class="stat-icon">⏳</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${(totPend/1000).toFixed(1)}k</div><div class="stat-lbl">Pending</div></div>
+  `;
+  document.getElementById('repProgLabel').textContent=`${MONTHS[mi]} ${y} · ${pct}%`;
+  document.getElementById('repProgBar').style.width=pct+'%';
+  document.getElementById('repPct').textContent=pct+'%';
+  document.getElementById('repCollected').textContent=`✅ LKR ${totColl.toLocaleString()}`;
+  document.getElementById('repExpected').textContent=`📋 LKR ${totExp.toLocaleString()}`;
+
+  const el=document.getElementById('reportContent');
+  if(!stus.length){el.innerHTML=`<div class="empty"><div class="ei">📋</div><p>No students found</p></div>`;return;}
+  let html='';
+  if(repTab==='all'||repTab==='paid') html+=buildRepSection(paidL,'paid',y,mi);
+  if(repTab==='all'||repTab==='unpaid') html+=buildRepSection(unpaidL,'unpaid',y,mi);
+  el.innerHTML=html||`<div class="empty"><div class="ei">🎉</div><p>No students in this tab</p></div>`;
+}
+function buildRepSection(list, type, y, mi) {
+  const isPaid=type==='paid';
+  const total=list.reduce((a,s)=>a+s.fee,0);
+  const icon=isPaid?'✅':'❌';
+  const lbl=isPaid?'Paid Students':'Unpaid Students';
+  if(!list.length) return `
+    <div class="rep-card ${type}">
+      <div class="rep-section-title ${type}">${icon} ${lbl} <span class="badge ${isPaid?'b-paid':'b-unpaid'}">0</span></div>
+      <div class="rep-row"><span style="color:var(--ink3);font-size:0.85rem;">${isPaid?'No students paid yet':'All students paid! 🎉'}</span></div>
+    </div>`;
+  return `
+    <div class="rep-card ${type}">
+      <div class="rep-section-title ${type}">
+        <span>${icon} ${lbl}</span>
+        <span class="badge ${isPaid?'b-paid':'b-unpaid'}">${list.length}</span>
+      </div>
+      ${list.map(s=>`
+        <div class="rep-row">
+          <div class="rep-av ${isPaid?'av-paid':'av-unpaid'}">${initials(s.name)}</div>
+          <div class="rep-info">
+            <div class="rep-name">${esc(s.name)}</div>
+            <div class="rep-sub">${esc(s.cls)}${s.parent?' · '+esc(s.parent):''}</div>
+          </div>
+          <div class="rep-right">
+            <span class="rep-fee ${type}">LKR ${s.fee.toLocaleString()}</span>
+            ${s.phone?`<button class="btn btn-wa btn-sm" style="font-size:0.7rem;padding:5px 9px;min-height:28px;" onclick="sendRepWA('${s.id}',${y},${mi})">📱 ${isPaid?'Receipt':'Remind'}</button>`:`<span style="font-size:0.7rem;color:var(--ink3);">No phone</span>`}
+          </div>
+        </div>
+      `).join('')}
+      <div class="rep-footer">
+        <span class="text-mute">${isPaid?'Total Collected':'Total Pending'}</span>
+        <span class="rep-fee ${type} mono">LKR ${total.toLocaleString()}</span>
+      </div>
+    </div>`;
+}
+function sendRepWA(sid, y, mi) {
+  const d=db(); const s=d.students.find(x=>x.id===sid); if(!s||!s.phone) return;
+  const p=paid(d,sid,y,mi);
+  const msg=`﷽\n\nAssalamu Alaikum ${s.parent||'Parent/Guardian'},\n\n${p?`This is to confirm that the monthly fee for *${s.name}* (${s.cls}) for *${MONTHS[mi]} ${y}* has been received.\n\nAmount: *LKR ${s.fee.toLocaleString()}*\n\nJazakAllahu Khairan 🤲`:`Kindly note that the monthly fee for *${s.name}* (${s.cls}) for *${MONTHS[mi]} ${y}* is pending.\n\nAmount: *LKR ${s.fee.toLocaleString()}*\n\nPlease pay at your earliest. JazakAllahu Khairan 🙏`}\n\nKulliyathuth Dharul Uloom\nHiflul Quran Madrasha\n📞 0755252308`;
+  const ph=s.phone.replace(/\D/g,'');
+  const intl=ph.startsWith('0')?'94'+ph.slice(1):ph;
+  window.open(`https://wa.me/${intl}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function bulkRemind() {
+  const d=db();
+  const y=Number(document.getElementById('repYear')?.value||CUR_YEAR);
+  const mi=Number(document.getElementById('repMonth')?.value??CUR_MONTH);
+  const unpaid=d.students.filter(s=>!paid(d,s.id,y,mi)&&s.phone);
+  if(!unpaid.length){toast('No unpaid students with phone numbers','e');return;}
+  if(!confirm(`Send WhatsApp reminders to ${unpaid.length} unpaid students?`)) return;
+  unpaid.forEach((s,i)=>{
+    setTimeout(()=>{
+      const msg=`﷽\n\nAssalamu Alaikum ${s.parent||'Parent/Guardian'},\n\nThis is a reminder that the monthly fee for *${s.name}* (${s.cls}) for *${MONTHS[mi]} ${y}* is pending.\n\nAmount: *LKR ${s.fee.toLocaleString()}*\n\nKindly pay at the earliest. JazakAllahu Khairan 🙏\n\nKulliyathuth Dharul Uloom\nHiflul Quran Madrasha · 📞 0755252308`;
+      const ph=s.phone.replace(/\D/g,'');
+      const intl=ph.startsWith('0')?'94'+ph.slice(1):ph;
+      window.open(`https://wa.me/${intl}?text=${encodeURIComponent(msg)}`,'_blank');
+    },i*700);
+  });
+  toast(`📱 Opening ${unpaid.length} WhatsApp…`);
+}
+function printReport() {
+  const d=db();
+  const y=Number(document.getElementById('repYear')?.value||CUR_YEAR);
+  const mi=Number(document.getElementById('repMonth')?.value??CUR_MONTH);
+  const cf=document.getElementById('repClass')?.value||'all';
+  let stus=d.students.filter(s=>cf==='all'||s.cls===cf);
+  const paidL=stus.filter(s=>paid(d,s.id,y,mi));
+  const unpaidL=stus.filter(s=>!paid(d,s.id,y,mi));
+  const totExp=stus.reduce((a,s)=>a+s.fee,0);
+  const totColl=paidL.reduce((a,s)=>a+s.fee,0);
+  const totPend=unpaidL.reduce((a,s)=>a+s.fee,0);
+  const pct=totExp?Math.round(totColl/totExp*100):0;
+  document.getElementById('printZone').innerHTML=`
+    <div class="print-doc">
+      <div class="ph">
+        <div class="ph-arabic">كُلِّيَّاتُ دَارُ الْعُلُوم · حِفْظُ الْقُرْآن الْكَرِيم</div>
+        <div class="ph-name">Kulliyathuth Dharul Uloom Hiflul Quran Madrasha</div>
+        <div class="ph-addr">📍 Kakkamunai 06, Kinniya &nbsp;|&nbsp; 📞 0755252308</div>
+        <div class="ph-line"></div>
+      </div>
+      <div class="pt-title">📋 Paid / Unpaid Report — ${MONTHS[mi]} ${y} <span>Printed: ${NOW.toLocaleDateString('en-LK')}</span></div>
+      <div class="ps-row">
+        <div class="ps-box green"><div class="ps-val">${paidL.length}</div><div class="ps-lbl">✅ Paid</div></div>
+        <div class="ps-box red"><div class="ps-val">${unpaidL.length}</div><div class="ps-lbl">❌ Unpaid</div></div>
+        <div class="ps-box gold"><div class="ps-val">LKR ${totColl.toLocaleString()}</div><div class="ps-lbl">💰 Collected</div></div>
+        <div class="ps-box blue"><div class="ps-val">LKR ${totPend.toLocaleString()}</div><div class="ps-lbl">⏳ Pending</div></div>
+      </div>
+      <div class="pp-row">
+        <div class="pp-label"><span>Collection Progress</span><span>${pct}% — LKR ${totColl.toLocaleString()} of LKR ${totExp.toLocaleString()}</span></div>
+        <div class="pp-bar"><div class="pp-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="pt-section">
+        <div class="pt-sec-head paid">✅ Paid Students <span>${paidL.length} students · LKR ${totColl.toLocaleString()}</span></div>
+        <table class="pt-table">
+          <thead><tr><th>#</th><th>Student Name</th><th>Class</th><th>Parent</th><th>Amount</th></tr></thead>
+          <tbody>${paidL.length?paidL.map((s,i)=>`<tr><td>${i+1}</td><td>${esc(s.name)}</td><td>${esc(s.cls)}</td><td>${esc(s.parent||'—')}</td><td class="fc">LKR ${s.fee.toLocaleString()}</td></tr>`).join(''):'<tr><td colspan="5" style="text-align:center;color:#999;">No paid students</td></tr>'}</tbody>
+        </table>
+        ${paidL.length?`<div class="pt-total"><span>Total Collected:</span><span>LKR ${totColl.toLocaleString()}</span></div>`:''}
+      </div>
+      <div class="pt-section">
+        <div class="pt-sec-head unpaid">❌ Unpaid Students <span>${unpaidL.length} students · LKR ${totPend.toLocaleString()}</span></div>
+        <table class="pt-table">
+          <thead><tr><th>#</th><th>Student Name</th><th>Class</th><th>Parent</th><th>Amount Due</th></tr></thead>
+          <tbody>${unpaidL.length?unpaidL.map((s,i)=>`<tr><td>${i+1}</td><td>${esc(s.name)}</td><td>${esc(s.cls)}</td><td>${esc(s.parent||'—')}</td><td class="fc">LKR ${s.fee.toLocaleString()}</td></tr>`).join(''):'<tr><td colspan="5" style="text-align:center;color:#999;">All paid! 🎉</td></tr>'}</tbody>
+        </table>
+        ${unpaidL.length?`<div class="pt-total"><span>Total Pending:</span><span>LKR ${totPend.toLocaleString()}</span></div>`:''}
+      </div>
+      <div class="print-footer">Kulliyathuth Dharul Uloom Hiflul Quran Madrasha · Kakkamunai 06, Kinniya · 0755252308</div>
+    </div>`;
+  setTimeout(()=>window.print(),100);
+}
+
+// ============================================================
+//  SUMMARY
+// ============================================================
+function renderSummary() {
+  const d=db();
+  const y=Number(document.getElementById('sumYear')?.value||CUR_YEAR);
+  const mv=document.getElementById('sumMonth')?.value;
+  const mis=mv==='all'?MONTHS.map((_,i)=>i):[Number(mv)];
+  let totColl=0,totExp=0,totUnpaid=0;
+  let html='';
+  mis.forEach(mi=>{
+    let mc=0,me=0,pl=[],ul=[];
+    d.students.forEach(s=>{ me+=s.fee; if(paid(d,s.id,y,mi)){mc+=s.fee;pl.push(s);}else ul.push(s); });
+    totColl+=mc;totExp+=me;totUnpaid+=ul.length;
+    const pct=me?Math.round(mc/me*100):0;
+    html+=`
+      <div class="card">
+        <div class="flex-between" style="margin-bottom:8px;">
+          <span style="font-weight:800;color:var(--g800);">${MONTHS[mi]} ${y}</span>
+          <span class="mono" style="font-size:0.82rem;color:var(--ink3);">${pct}%</span>
+        </div>
+        <div class="prog-wrap" style="margin-bottom:10px;"><div class="prog-fill" style="width:${pct}%"></div></div>
+        <div class="flex-between" style="font-size:0.78rem;margin-bottom:12px;">
+          <span style="color:var(--g600);font-weight:700;">LKR ${mc.toLocaleString()}</span>
+          <span style="color:var(--ink3);">of LKR ${me.toLocaleString()}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>
+            <div style="font-size:0.7rem;font-weight:800;color:var(--g600);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">✅ Paid (${pl.length})</div>
+            ${pl.length?pl.map(s=>`<div style="padding:5px 8px;background:var(--g50);border-radius:8px;font-size:0.78rem;margin-bottom:3px;display:flex;justify-content:space-between;"><span class="fw-bold">${esc(s.name)}</span><span class="mono text-green">+${s.fee.toLocaleString()}</span></div>`).join(''):'<div style="font-size:0.78rem;color:var(--ink3);">None</div>'}
+          </div>
+          <div>
+            <div style="font-size:0.7rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">❌ Unpaid (${ul.length})</div>
+            ${ul.length?ul.map(s=>`<div style="padding:5px 8px;background:var(--red2);border-radius:8px;font-size:0.78rem;margin-bottom:3px;display:flex;justify-content:space-between;"><span class="fw-bold">${esc(s.name)}</span><span class="mono text-red">${s.fee.toLocaleString()}</span></div>`).join(''):'<div style="font-size:0.78rem;color:var(--g600);font-weight:700;">All paid! 🎉</div>'}
+          </div>
+        </div>
+      </div>`;
+  });
+  const totExpenses=d.expenses.filter(e=>new Date(e.date).getFullYear()===y).reduce((a,e)=>a+e.amount,0);
+  document.getElementById('sumStats').innerHTML=`
+    <div class="stat-box s-gold"><div class="stat-icon">💰</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${(totColl/1000).toFixed(1)}k</div><div class="stat-lbl">Collected</div></div>
+    <div class="stat-box s-red"><div class="stat-icon">⏳</div><div class="stat-val">${totUnpaid}</div><div class="stat-lbl">Unpaid entries</div></div>
+    <div class="stat-box"><div class="stat-icon">💸</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${(totExpenses/1000).toFixed(1)}k</div><div class="stat-lbl">Expenses ${y}</div></div>
+    <div class="stat-box s-blue"><div class="stat-icon">📈</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${((totColl-totExpenses)/1000).toFixed(1)}k</div><div class="stat-lbl">Net Income</div></div>
+  `;
+  document.getElementById('summaryContent').innerHTML=html||`<div class="empty"><div class="ei">📊</div><p>No data</p></div>`;
+}
+function printSummary() {
+  const d=db();
+  const y=Number(document.getElementById('sumYear')?.value||CUR_YEAR);
+  const mv=document.getElementById('sumMonth')?.value;
+  const mis=mv==='all'?MONTHS.map((_,i)=>i):[Number(mv)];
+  let blocks='';
+  mis.forEach(mi=>{
+    let mc=0,me=0,pl=[],ul=[];
+    d.students.forEach(s=>{me+=s.fee;if(paid(d,s.id,y,mi)){mc+=s.fee;pl.push(s);}else ul.push(s);});
+    const pct=me?Math.round(mc/me*100):0;
+    blocks+=`
+      <div class="sum-month-block">
+        <div class="sum-month-head"><span>${MONTHS[mi]} ${y}</span><span>LKR ${mc.toLocaleString()} / ${me.toLocaleString()} (${pct}%)</span></div>
+        <div class="pp-row"><div class="pp-bar"><div class="pp-fill" style="width:${pct}%"></div></div></div>
+        <div class="sum-2col" style="margin-top:8px;">
+          <div>
+            <div class="sum-col-head paid">✅ Paid (${pl.length})</div>
+            ${pl.length?pl.map(s=>`<div class="sum-sname paid"><span>${esc(s.name)}</span><span>LKR ${s.fee.toLocaleString()}</span></div>`).join(''):'<div style="font-size:0.75rem;color:#999;padding:4px 8px;">None paid</div>'}
+          </div>
+          <div>
+            <div class="sum-col-head unpaid">❌ Unpaid (${ul.length})</div>
+            ${ul.length?ul.map(s=>`<div class="sum-sname unpaid"><span>${esc(s.name)}</span><span>LKR ${s.fee.toLocaleString()}</span></div>`).join(''):'<div style="font-size:0.75rem;color:#999;padding:4px 8px;">All paid!</div>'}
+          </div>
+        </div>
+      </div>`;
+  });
+  document.getElementById('printZone').innerHTML=`
+    <div class="print-doc">
+      <div class="ph">
+        <div class="ph-arabic">كُلِّيَّاتُ دَارُ الْعُلُوم · حِفْظُ الْقُرْآن الْكَرِيم</div>
+        <div class="ph-name">Kulliyathuth Dharul Uloom Hiflul Quran Madrasha</div>
+        <div class="ph-addr">📍 Kakkamunai 06, Kinniya &nbsp;|&nbsp; 📞 0755252308</div>
+        <div class="ph-line"></div>
+      </div>
+      <div class="pt-title">📊 Monthly Fee Summary — ${y} <span>Printed: ${NOW.toLocaleDateString('en-LK')}</span></div>
+      ${blocks}
+      <div class="print-footer">Kulliyathuth Dharul Uloom Hiflul Quran Madrasha · Kakkamunai 06, Kinniya · 0755252308</div>
+    </div>`;
+  setTimeout(()=>window.print(),100);
+}
+
+// ============================================================
+//  EXPENSES
+// ============================================================
+const expIcons={salary:'💼',utility:'💡',maintenance:'🔧',stationery:'📝',other:'📦'};
+const expColors={salary:'#e3f0ff',utility:'#fff3e0',maintenance:'#f3e5f5',stationery:'#e8f5e9',other:'#f5f5f5'};
+function addExpense() {
+  const desc=document.getElementById('expDesc').value.trim();
+  const amt=Number(document.getElementById('expAmt').value);
+  const type=document.getElementById('expType').value;
+  const date=document.getElementById('expDate').value;
+  if(!desc){toast('Enter description','e');return;}
+  if(!amt){toast('Enter amount','e');return;}
+  const d=db();
+  d.expenses.push({id:'e'+Date.now(),desc,amount:amt,type,date});
+  setDb(d); renderExpenses(); renderDash();
+  document.getElementById('expDesc').value=''; document.getElementById('expAmt').value='';
+  closeSheet('expSheet'); toast('✅ Expense saved');
+}
+function deleteExpense(id) {
+  const d=db(); d.expenses=d.expenses.filter(e=>e.id!==id); setDb(d); renderExpenses(); renderDash(); toast('🗑️ Deleted');
+}
+function renderExpenses() {
+  const d=db();
+  const y=Number(document.getElementById('expFYear')?.value||CUR_YEAR);
+  const mv=document.getElementById('expFMonth')?.value;
+  let list=d.expenses.filter(e=>new Date(e.date).getFullYear()===y);
+  if(mv!=='all') list=list.filter(e=>new Date(e.date).getMonth()===Number(mv));
+  list.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const el=document.getElementById('expenseList');
+  if(!list.length){el.innerHTML=`<div class="empty" style="padding:20px;"><div class="ei">💸</div><p>No expenses</p></div>`;document.getElementById('expTotal').textContent='';return;}
+  el.innerHTML=list.map(e=>`
+    <div class="exp-item">
+      <div class="exp-dot" style="background:${expColors[e.type]||'#f5f5f5'}">${expIcons[e.type]||'📦'}</div>
+      <div class="exp-info">
+        <div class="exp-desc">${esc(e.desc)}</div>
+        <div class="exp-meta">${e.date}</div>
+      </div>
+      <span class="exp-amt">LKR ${e.amount.toLocaleString()}</span>
+      <button class="btn btn-danger btn-icon btn-sm" onclick="deleteExpense('${e.id}')">🗑️</button>
+    </div>
+  `).join('');
+  const total=list.reduce((a,e)=>a+e.amount,0);
+  document.getElementById('expTotal').innerHTML=`Total: <span class="text-red mono">LKR ${total.toLocaleString()}</span>`;
+}
+
+// ============================================================
+//  NOTICES
+// ============================================================
+function addNotice() {
+  const title=document.getElementById('noTitle').value.trim();
+  const msg=document.getElementById('noMsg').value.trim();
+  if(!title){toast('Enter title','e');return;}
+  const d=db();
+  d.notices.unshift({id:'n'+Date.now(),title,msg,date:NOW.toLocaleDateString('en-LK',{day:'2-digit',month:'short',year:'numeric'})});
+  setDb(d); renderNotices();
+  document.getElementById('noTitle').value=''; document.getElementById('noMsg').value='';
+  closeSheet('noticeSheet'); toast('📌 Notice posted');
+}
+function deleteNotice(id) {
+  const d=db(); d.notices=d.notices.filter(n=>n.id!==id); setDb(d); renderNotices(); toast('🗑️ Removed');
+}
+function renderNotices() {
+  const d=db(); const el=document.getElementById('noticeList');
+  if(!d.notices.length){el.innerHTML=`<div class="empty" style="padding:20px;"><div class="ei">📌</div><p>No notices</p></div>`;return;}
+  el.innerHTML=d.notices.map(n=>`
+    <div class="notice-item">
+      <div class="flex-between"><div class="notice-title">${esc(n.title)}</div><button class="btn btn-danger btn-sm btn-icon" onclick="deleteNotice('${n.id}')">✕</button></div>
+      ${n.msg?`<div class="notice-msg">${esc(n.msg)}</div>`:''}
+      <div class="notice-date">📅 ${n.date}</div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+//  DASHBOARD
+// ============================================================
+function renderDash() {
+  const d=db(); const y=CUR_YEAR; const m=CUR_MONTH;
+  let coll=0,exp=0; const unp=[];
+  d.students.forEach(s=>{exp+=s.fee;if(paid(d,s.id,y,m))coll+=s.fee;else unp.push(s);});
+  const pct=exp?Math.round(coll/exp*100):0;
+  const totExp=d.expenses.filter(e=>new Date(e.date).getFullYear()===y).reduce((a,e)=>a+e.amount,0);
+  document.getElementById('dashHeroStats').innerHTML=`
+    <div class="dash-hs"><div class="dash-hs-v">${d.students.length}</div><div class="dash-hs-l">Students</div></div>
+    <div class="dash-hs"><div class="dash-hs-v">${pct}%</div><div class="dash-hs-l">Collected</div></div>
+    <div class="dash-hs"><div class="dash-hs-v">${unp.length}</div><div class="dash-hs-l">Unpaid</div></div>
+  `;
+  document.getElementById('dashStats').innerHTML=`
+    <div class="stat-box s-gold"><div class="stat-icon">💰</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${(coll/1000).toFixed(1)}k</div><div class="stat-lbl">Collected</div></div>
+    <div class="stat-box s-red"><div class="stat-icon">⏳</div><div class="stat-val">${unp.length}</div><div class="stat-lbl">Unpaid</div></div>
+    <div class="stat-box"><div class="stat-icon">💸</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${(totExp/1000).toFixed(1)}k</div><div class="stat-lbl">Expenses</div></div>
+    <div class="stat-box s-green"><div class="stat-icon">📈</div><div class="stat-val" style="font-size:1.1rem;">LKR<br>${((coll-totExp)/1000).toFixed(1)}k</div><div class="stat-lbl">Net</div></div>
+  `;
+  document.getElementById('dashGlance').innerHTML=`
+    <div style="font-size:0.8rem;color:var(--ink3);margin-bottom:6px;">${pct}% collected · LKR ${coll.toLocaleString()} of ${exp.toLocaleString()}</div>
+    <div class="prog-wrap" style="margin-bottom:10px;"><div class="prog-fill" style="width:${pct}%"></div></div>
+    <div class="flex-between" style="font-size:0.8rem;">
+      <span>Expected: <span class="fw-bold mono">LKR ${exp.toLocaleString()}</span></span>
+      <span class="text-green fw-bold mono">LKR ${coll.toLocaleString()}</span>
+    </div>
+  `;
+  document.getElementById('dashUnpaid').innerHTML=unp.length?
+    unp.slice(0,6).map(s=>`
+      <div class="flex-between" style="padding:8px 0;border-bottom:1px solid rgba(17,122,85,0.08);">
+        <span style="font-size:0.88rem;font-weight:600;">${esc(s.name)}</span>
+        <span class="badge b-unpaid">LKR ${s.fee.toLocaleString()}</span>
+      </div>
+    `).join('')+(unp.length>6?`<div style="text-align:center;padding:8px;font-size:0.78rem;color:var(--ink3);">+${unp.length-6} more</div>`:'')
+    :'<div style="text-align:center;padding:16px;color:var(--g600);font-weight:700;">🎉 All paid this month!</div>';
+  const rExp=d.expenses.slice(-4).reverse();
+  document.getElementById('dashExpenses').innerHTML=rExp.length?
+    rExp.map(e=>`
+      <div class="flex-between" style="padding:8px 0;border-bottom:1px solid rgba(17,122,85,0.08);">
+        <span style="font-size:0.85rem;font-weight:500;">${esc(e.desc)}</span>
+        <span class="exp-amt">LKR ${e.amount.toLocaleString()}</span>
+      </div>
+    `).join('')
+    :'<div class="empty" style="padding:20px;"><p>No expenses yet</p></div>';
+}
+
+// ============================================================
+//  SETTINGS
+// ============================================================
+function changePass() {
+  const c=document.getElementById('cPass').value;
+  const n=document.getElementById('nPass').value;
+  const cf=document.getElementById('cfPass').value;
+  const d=db();
+  if(c!==d.pass){toast('Current password incorrect','e');return;}
+  if(n.length<4){toast('Min 4 characters','e');return;}
+  if(n!==cf){toast('Passwords do not match','e');return;}
+  d.pass=n; setDb(d);
+  ['cPass','nPass','cfPass'].forEach(id=>document.getElementById(id).value='');
+  closeSheet('passSheet'); toast('✅ Password updated');
+}
+function exportData() {
+  const d=db();
+  const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`kulliyathu_${NOW.toISOString().split('T')[0]}.json`; a.click();
+  toast('📤 Exported');
+}
+
+// ============================================================
+//  UTILITY
+// ============================================================
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function initials(n){return String(n||'').split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase()||'?';}
+function toast(msg,type='s'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='show '+type;
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
